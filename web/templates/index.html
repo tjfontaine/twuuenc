@@ -4,6 +4,9 @@
     <div align="center">
       <form action="{% url twuuenc.web.views.index %}" method="POST">
         <p>From {{ encode_form.input }} Into {{ encode_form.output }}</p>
+        {% if encode_form.input.errors or encode_form.output.errors %}
+        <p>These fields can contain no more than 512 characters</p>
+        {% endif %}
         <p>Use zlib (de)compression: {{ encode_form.compress }}</p>
         <input type="submit" value="Encode" />
       </form>

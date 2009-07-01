@@ -19,6 +19,7 @@ def index(request):
   output_len     = 0
   compressed     = False
   compressed_len = 0
+  form_invalid   = False
 
   if request.method == 'POST':
     form = EncodeForm(request.POST)
@@ -46,21 +47,18 @@ def index(request):
           compressed = True
           input = decompress(input)
           input_len = len(input)
-      else:
-        print 'nothing included'
     else:
-      print 'invalid form'
-  else:
-    pass # GET
+      form_invalid = True
 
   initial = {
     'input'   : input,
     'output'  : output,
     'compress': compressed,
   }
-  form = EncodeForm(initial=initial)
 
-        
+  if not form_invalid:
+    form = EncodeForm(initial=initial)
+
   params = {
     'encode_form'     : form,
     'compressed'      : compressed,

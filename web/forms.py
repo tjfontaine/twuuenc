@@ -1,6 +1,6 @@
 from django import forms
 
 class EncodeForm(forms.Form):
-  input = forms.CharField(required=False, widget=forms.Textarea)
-  output = forms.CharField(required=False, widget=forms.Textarea)
+  input = forms.CharField(required=False, widget=forms.Textarea, max_length=512)
+  output = forms.CharField(required=False, widget=forms.Textarea, max_length=512)
   compress = forms.BooleanField(required=False)
