@@ -1,16 +1,18 @@
 <html>
   <head><title>Twitter Unicode Encode</title></head>
   <body>
-    <form action="{% url twuuenc.web.views.index %}" method="POST">
-      {{ encode_form.as_p }}
-      <input type="submit" value="Encode" />
-    </form>
-    <ul>
-      <li>Input Length: {{ input_len }}</li>
-      {% if compressed %}
-      <li>Compressed Length: {{ compressed_len }}</li>
-      {% endif %}
-      <li>Output Length: {{ output_len }}</li>
-    </ul>
+    <div align="center">
+      <form action="{% url twuuenc.web.views.index %}" method="POST">
+        {{ encode_form.as_p }}
+        <input type="submit" value="Encode" />
+      </form>
+      <ul>
+        <li>Input Length: {{ input_len }}</li>
+        {% if compressed %}
+        <li>Compressed Length: {{ compressed_len }}</li>
+        {% endif %}
+        <li>Output Length: {{ output_len }}</li>
+      </ul>
+    </div>
   </body>
 </html>
