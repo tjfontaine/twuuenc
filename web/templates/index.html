@@ -3,16 +3,19 @@
   <body>
     <div align="center">
       <form action="{% url twuuenc.web.views.index %}" method="POST">
-        {{ encode_form.as_p }}
+        <p>From {{ encode_form.input }} Into {{ encode_form.output }}</p>
+        <p>Use zlib (de)compression: {{ encode_form.compress }}</p>
         <input type="submit" value="Encode" />
       </form>
-      <ul>
-        <li>Input Length: {{ input_len }}</li>
+      {% ifnotequal input_len 0 %}
+      <table>
+        <tr><td>Input Length:</td><td>{{ input_len }}</td></tr>
         {% if compressed %}
-        <li>Compressed Length: {{ compressed_len }}</li>
+        <tr><td>Compressed Length:</td><td>{{ compressed_len }}</td></tr>
         {% endif %}
-        <li>Output Length: {{ output_len }}</li>
-      </ul>
+        <tr><td>Output Length:</td><td>{{ output_len }}</td></tr>
+      </table>
+      {% endifnotequal %}
     </div>
   </body>
 </html>
