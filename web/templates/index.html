@@ -14,6 +14,7 @@
         <p>These fields can contain no more than 512 characters</p>
         {% endif %}
         <p>Use zlib (de)compression: {{ encode_form.compress }}</p>
+        <p>Include twuuenc markers: {{ encode_form.markers }}</p>
         <input type="submit" value="Encode" />
       </form>
       {% ifnotequal input_len 0 %}
@@ -25,6 +26,7 @@
         <tr><td>Output Length:</td><td>{{ output_len }}</td></tr>
       </table>
       {% endifnotequal %}
+      <p>You can optionally enable the unicode markers (which unfortunately will use 2 characters of your tweet) to signify that the following portion needs to be decoded. A {{ clean_marker }} means the following message has no binary compression, while a {{ zlib_marker }} means the following message has been compressed by zlib.
     </div>
   </body>
 </html>

@@ -64,6 +64,9 @@ ALPHABET = range(0x20, 0x7E) + range(0xA1, 0xFF) + range(0x100, 0x17F) + range(0
 
 BIT_STORAGE = 11
 
+TWUUENC_START = unichr(0x2639)
+TWUUENC_START_ZLIB = unichr(0x263A)
+
 def encode(s, storage=BIT_STORAGE, alpha=ALPHABET, char_func=unichr):
   """
     Accepts any string/bytes. You can override the storage and alpha
@@ -87,6 +90,8 @@ def encode(s, storage=BIT_STORAGE, alpha=ALPHABET, char_func=unichr):
       v = bs.readbits(storage).uint
       buf.append(char_func(alpha[v]))
 
+  buf = [b for b in buf if b != unichr(alpha[0])]
+
   return buf
 
 def decode(s, storage=BIT_STORAGE, alpha=ALPHABET):
@@ -96,7 +101,7 @@ def decode(s, storage=BIT_STORAGE, alpha=ALPHABET):
 
     Returns a string/bytes
   """
-  n = [ord(a) for a in s]
+  n = [ord(a) for a in s if a != TWUUENC_START and a != TWUUENC_START_ZLIB]
   bs = BitString()
   for a in n:
     for pos,l in enumerate(alpha):
