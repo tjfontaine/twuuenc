@@ -40,6 +40,8 @@ def index(request):
             output = TWUUENC_START_ZLIB + output + TWUUENC_START_ZLIB
           else:
             output = TWUUENC_START + output + TWUUENC_START
+        else:
+          markers = False
 
         output_len = len(output)
 
