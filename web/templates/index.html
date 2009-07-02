@@ -7,7 +7,7 @@
       <p>
       No longer be limited by 140 ASCII characters, encode your message in unicode. Borrowing from the <a href="http://en.wikipedia.org/wiki/Base64">Base64</a> metaphor, this technique uses a 2048 count alphabet to encode your message. That means each character can hold up to 11 bits of your data, allowing you a total of 192 bytes in the space you previously thought you could only store 140. You can also transfer binary data!
       </p>
-      <p>Enter your longer than 140 tweet and watch it shrink. If it's still too long enable compression to shrink it further! OR Enter the encoded message you received on the right and it will be decoded on your left.</p>
+      <p>Enter your longer than 140 tweet and watch it shrink. If it's still too long enable compression to shrink it further! OR Leave the input field blank and enter the unicode string to decode on the left.</p>
       <form action="{% url twuuenc.web.views.index %}" method="POST">
         <p>From {{ encode_form.input }} Into {{ encode_form.output }}</p>
         {% if encode_form.input.errors or encode_form.output.errors %}
