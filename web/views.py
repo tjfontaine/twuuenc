@@ -33,7 +33,7 @@ def index(request):
           compressed = True
           msg = compress(msg, 9)
           compressed_len = len(msg)
-        output = ''.join(encode(msg))
+        output = encode(msg)
 
         if form.cleaned_data['markers']:
           if compressed:

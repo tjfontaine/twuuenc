@@ -94,7 +94,7 @@ def encode(s, storage=BIT_STORAGE, alpha=ALPHABET, char_func=unichr):
     Returns a list of encoded bits.
   """
   n = s
-  buf = []
+  buf = ''
   while len(n) > 0:
     b = n[:storage]
     n = n[storage:]
@@ -107,11 +107,9 @@ def encode(s, storage=BIT_STORAGE, alpha=ALPHABET, char_func=unichr):
 
     for i in range(8):
       v = bs.readbits(storage).uint
-      buf.append(char_func(alpha[v]))
+      buf += char_func(alpha[v])
 
-  buf = [b for b in buf if b != unichr(alpha[0])]
-
-  return buf
+  return buf.rstrip(char_func(alpha[0]))
 
 def decode(s, storage=BIT_STORAGE, alpha=ALPHABET):
   """
